@@ -17,7 +17,7 @@ const getReviewPage = async (url) => {
 };
 
 (async () => {
-    const res = await fetch('https://blendjet.com/products/blendjet-one');
+    const res = await fetch('https://dockatot.com.au/collections/deluxe-plus/products/dockatot-deluxe-dock-pristine-white');
     const html = await res.text()
     const reviewsUrl = html.match(/https:.*?widget\/.*?\//g)[0] + 'reviews/';
     const numReviews = html.match(/data-raters="([0-9]+)/g)[0].match(/([0-9]+)/g)[0];
@@ -31,5 +31,5 @@ const getReviewPage = async (url) => {
     const ress = await Promise.all(pages.map(p => getReviewPage(reviewsUrl + pid + '?page=' + p)));
     const reviews = ress.flat();
     console.log(reviews)
-    // await fs.writeFile('shopify/loox/productPage.html', html)
+    // await fs.writeFile('shopify/loox/productPage.html', reviews)
 })();
