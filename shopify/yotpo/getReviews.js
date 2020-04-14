@@ -1,13 +1,7 @@
 const rp = require('request-promise-native');
 const fetch = require('node-fetch');
 const fs = require('fs').promises;
-
-class Review {
-    constructor(id, rating, user, body, date, upvotes, downvotes){  
-        this.id = id, this.rating = rating, this.user = user, this.body = body,
-        this.date = date, this.upvotes = upvotes, this.downvotes = downvotes;
-    }
-}
+const $ = require('cheerio');
 
 const Yotpo = ({
     initialize: async function (url) {
@@ -30,7 +24,7 @@ const Yotpo = ({
                 } 
             }]`
         });
-        const json = JSON.parse(res.slice(1,res.length-1));
+        const json = JSON.parse(res.slice(1, res.length - 1));
         const numReviews = json.result.match(/reviewCount.*([0-9]+)/g)[0].match(/([0-9]+)/g)[0];
         return numReviews;
     },
@@ -44,33 +38,28 @@ const Yotpo = ({
                 app_key: this.app_key,
             }
         )
-        return JSON.parse(res.slice(1, res.length-1)).result
+        return this.processReviews(JSON.parse(res.slice(1, res.length - 1)).result)
     },
-    processReviews: async function(raw){
-        
+    processReviews: async function (raw) {
+        const reviewDivs = $('.yotpo-review', raw);
+        return await Promise.all(reviewDivs.toArray().map(x => (this.transformReview(x))));
+    },
+    transformReview: async function (x) {
+        return {
+            id: x.attribs['data-review-id'],
+            user: $('.yotpo-user-name', x).text(),
+            rating: $('.yotpo-icon-star', x).length,
+            body: $('.content-review', x).text(),
+            date: $('.yotpo-review-date', x).toArray()[0].children[0].data,
+            upvotes: $('.vote-sum', x).toArray().filter(a => a.attribs['data-type'] === 'up')[0].children[0].data,
+            downvotes: $('.vote-sum', x).toArray().filter(a => a.attribs['data-type'] === 'down')[0].children[0].data,
+        }
     }
 });
 
+
 (async () => {
-    // const y = await Yotpo.initialize('https://www.kyliecosmetics.com/products/22-matte-liquid-lipstick');
-    // const rev = await y.getReviews();
-    // await fs.writeFile('./shopify/yotpo/allreview.html',rev)
-    const reviewsHTML = JSON.parse(await fs.readFile('./shopify/yotpo/allreview.json','utf8')).result
-    // console.log(reviewsHTML)
-    const reviews = reviewsHTML.match(/<div class=\"yotpo-review [\s\S]*?yotpo-review /g);
-    console.log(reviews.length)
-    // const idmatches = reviewsHTML.match(/data-review-id="([0-9]+)/g);
-    // const ids = idmatches.filter(i => i != null).map(i => i.match(/([0-9]+)/g)[0]);
-    // console.log(ids.length)
-    // let id, map = {};
-    // for(let i in ids){
-    //     id = ids[i]
-    //     if(map[id]== undefined){
-    //         map[id] = reviewsHTML.match(new RegExp(id+'[^>]+?>([^$]+?)<\/.*?>'));
-    //         // map[id] = reviewsHTML.match(/([0-9]+)[^>]+?>([^$]+?)<\/.*?>/g);
-    //     }else{
-    //         map[id].push(ids[i])
-    //     }
-    // }
-    // console.log(map)
+    const y = await Yotpo.initialize('https://shop.bulletproof.com/collections/all/products/vanilla-shortbread-collagen-protein-bar-12-pack');
+    const reviews = await y.getReviews();
+    console.log(reviews)
 })();
