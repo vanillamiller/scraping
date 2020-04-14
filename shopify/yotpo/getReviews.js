@@ -1,6 +1,5 @@
 const rp = require('request-promise-native');
 const fetch = require('node-fetch');
-const fs = require('fs').promises;
 const $ = require('cheerio');
 
 const Yotpo = ({
@@ -11,6 +10,8 @@ const Yotpo = ({
         const yotpoWidget = page.match(/<div class="yotpo yotpo-main-widget[\s\S]+?<\/div>/g)[0];
         this.pid = yotpoWidget.match(/data-product-id="([0-9]+)/g)[0].match(/([0-9]+)/g)[0];
         console.log(`initialized for`, url)
+        console.log(`pid`, this.pid);
+        console.log('app_key', this.app_key)
         return this;
     },
     getNumReviews: async function () {
@@ -61,5 +62,5 @@ const Yotpo = ({
 (async () => {
     const y = await Yotpo.initialize('https://shop.bulletproof.com/collections/all/products/vanilla-shortbread-collagen-protein-bar-12-pack');
     const reviews = await y.getReviews();
-    console.log(reviews)
+    console.log(reviews);
 })();
