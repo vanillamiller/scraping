@@ -1,0 +1,362 @@
+{
+    "19c97757-7c1e-4fb9-9b5f-928bfe031c95": {
+        "type": "number",
+        "title": "Timeliness",
+        "widget": {
+            "queryType": "ratings",
+            "formViewType": "prStarRatingWidget",
+            "itemViewType": "prRatingItemView",
+            "filterViewType": "prRatingsFilterView",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView",
+            "entryItemAggregationViewType": "prAverageStarRatingDistributionAggregationView",
+            "entryListItemAggregationViewType": "prAverageStarRatingAggregationView"
+        },
+        "fieldId": "number",
+        "question": "Timeliness",
+        "clearable": true,
+        "description": "The speed at which the loan was processed and finalised",
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "19c97757-7c1e-4fb9-9b5f-928bfe031c95"
+    },
+    "3e0ed192-c03c-4355-ba21-69968fc3455e": {
+        "type": "string",
+        "title": "Loan Start Date",
+        "widget": {
+            "options": {
+                "precision": "month"
+            },
+            "formViewType": "prDateWidget",
+            "itemViewType": "prDefaultDateItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prDateWidget",
+            "listItemViewType": "prDefaultDateListItemView"
+        },
+        "fieldId": "date",
+        "question": "When did you first receive this loan?",
+        "clearable": false,
+        "applicable": true,
+        "validationRules": [
+            {
+                "type": "date",
+                "options": {
+                    "condition": "in_the_past"
+                }
+            }
+        ],
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "3e0ed192-c03c-4355-ba21-69968fc3455e"
+    },
+    "64e93ea1-5405-4351-9906-19d262f6f628": {
+        "enum": [
+            "8ee3da85-4e6e-43a7-91c6-6046f67708c9",
+            "e52b4763-f415-497d-9a9c-dafbfffdb5d4",
+            "76d4e36d-6b9f-4913-8662-5130322d878c",
+            "5faafd36-d02e-4d30-97b2-1cddd6888917"
+        ],
+        "type": "string",
+        "title": "Loan Type",
+        "helper": "Your personal information will not be shown to the public or any business. It is only used by ProductReview to display aggregate statistics and averages for this industry.",
+        "widget": {
+            "formViewType": "prRadioWidget",
+            "itemViewType": "prHiddenItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prButtonListWidget",
+            "listItemViewType": "prDefaultUniqueChoiceListItemView"
+        },
+        "fieldId": "unique-choice",
+        "question": "What type of loan did you acquire?",
+        "clearable": true,
+        "enumNames": [
+            "Unsecured",
+            "Secured by Vehicle",
+            "Secured by Term Deposit",
+            "Other"
+        ],
+        "visibilityGroup": [],
+        "path": "64e93ea1-5405-4351-9906-19d262f6f628"
+    },
+    "927f4d46-7f10-4cd5-b18d-be2136f214a6": {
+        "enum": [
+            "7a8a8c7d-b99f-4ae0-bd64-66576ebe56ad",
+            "2a754af6-cfd2-4106-a319-04bf8f63b14d",
+            "eb69d998-a11d-4293-87b6-07f8ca291f4e",
+            "3a1b2495-46ed-4032-92c6-d64aca7ebf8f"
+        ],
+        "type": "string",
+        "title": "Loan Type",
+        "widget": {
+            "queryType": "facetFilter",
+            "formViewType": "prButtonListWidget",
+            "itemViewType": "prDefaultUniqueChoiceItemView",
+            "filterViewType": "prRefinementListFilterView",
+            "formTreeViewType": "prButtonListWidget",
+            "listItemViewType": "prDefaultUniqueChoiceListItemView",
+            "entryItemAggregationViewType": "prUniqueChoiceDistributionAggregationView",
+            "entryListItemAggregationViewType": "prHiddenItemAggregationView"
+        },
+        "fieldId": "unique-choice",
+        "question": "What type of loan did you receive?",
+        "enumNames": [
+            "Fixed Rate",
+            "Variable Rate",
+            "Line of Credit",
+            "Split"
+        ],
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "927f4d46-7f10-4cd5-b18d-be2136f214a6"
+    },
+    "b1088f67-0078-4973-9526-518bcdfa313e": {
+        "type": "number",
+        "title": "Loan Amount",
+        "helper": "Your personal information will not be shown to the public or any business. It is only used by ProductReview to display aggregate statistics and averages for this industry.",
+        "widget": {
+            "options": {
+                "currency": "AUD"
+            },
+            "formViewType": "prNumberWidget",
+            "itemViewType": "prHiddenItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView"
+        },
+        "fieldId": "number",
+        "question": "How much money did you borrow?",
+        "validationRules": [
+            {
+                "type": "number",
+                "options": {
+                    "value": "1",
+                    "condition": "multipleOf"
+                }
+            },
+            {
+                "type": "number",
+                "options": {
+                    "error": "Amount must be between 1 and 10,000,000",
+                    "value": "10000000",
+                    "condition": "lte"
+                }
+            }
+        ],
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "b1088f67-0078-4973-9526-518bcdfa313e"
+    },
+    "f65ccf09-af5b-42a0-8c9d-8e801617b89a": {
+        "type": "number",
+        "title": "Interest Rate",
+        "helper": "Your personal information will not be shown to the public or any business. It is only used by ProductReview to display aggregate statistics and averages for this industry.",
+        "widget": {
+            "options": {
+                "suffix": "% p.a.",
+                "placeholder": "e.g. 4.5"
+            },
+            "formViewType": "prNumberWidget",
+            "itemViewType": "prHiddenItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView"
+        },
+        "fieldId": "number",
+        "question": "What is the interest rate of your loan?",
+        "placeholder": "e.g. 4.5",
+        "validationRules": [
+            {
+                "type": "number",
+                "options": {
+                    "value": "0.01",
+                    "condition": "multipleOf"
+                }
+            },
+            {
+                "type": "number",
+                "options": {
+                    "error": "Rate must be between 0% and 100%, sorry!",
+                    "value1": "0",
+                    "value2": "100",
+                    "condition": "between"
+                }
+            }
+        ],
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "f65ccf09-af5b-42a0-8c9d-8e801617b89a"
+    },
+    "f76ca26b-31ff-4191-81fe-2c4d43d75544": {
+        "type": "boolean",
+        "title": "Loan Customisation",
+        "widget": {
+            "options": {
+                "enumNames": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            "formViewType": "prSwitchWidget",
+            "itemViewType": "prHiddenItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prSwitchWidget",
+            "listItemViewType": "prDefaultBooleanListItemView"
+        },
+        "fieldId": "boolean",
+        "question": "Were you able to customise your loan according to your needs?",
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "f76ca26b-31ff-4191-81fe-2c4d43d75544"
+    },
+    "db48e920-23df-4ab6-b064-432be852ce5e": {
+        "tags": [
+            "group_by_widget_type",
+            "very_important",
+            "incentivised_review"
+        ],
+        "type": "boolean",
+        "title": "Incentivised Review",
+        "helper": "This includes a guaranteed gift, a future discount, or entry into a chance draw. You only need to click \"Yes\" if the reward was offered by the company or brand you are reviewing. Please click \"No\" if you are participating in a giveaway run by ProductReview.com.au",
+        "widget": {
+            "options": {
+                "enumNames": [
+                    "Yes",
+                    "No"
+                ]
+            },
+            "queryType": "term",
+            "formViewType": "prSwitchWidget",
+            "itemViewType": "prDefaultBooleanItemView",
+            "filterViewType": "prBooleanButtonsFilterView",
+            "formTreeViewType": "prSwitchWidget",
+            "listItemViewType": "prDefaultBooleanListItemView",
+            "aggregationViewType": "prHiddenItemAggregationView",
+            "itemAggregationViewType": "prHiddenItemAggregationView",
+            "entryItemAggregationViewType": "prHiddenItemAggregationView",
+            "entryListItemAggregationViewType": "prHiddenItemAggregationView"
+        },
+        "fieldId": "boolean",
+        "question": "Were you offered a reward for submitting this review?",
+        "required": true,
+        "description": "Whether the reviewer was offered a reward for writing this review.",
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "db48e920-23df-4ab6-b064-432be852ce5e"
+    },
+    "afaab6fb-5390-4ae5-aec2-d8c72033677c": {
+        "tags": [
+            "group_by_widget_type"
+        ],
+        "type": "number",
+        "title": "Transparency",
+        "helper": "How open, honest and informative do you think this company is in regards to its business practices?",
+        "widget": {
+            "queryType": "ratings",
+            "formViewType": "prStarRatingWidget",
+            "itemViewType": "prRatingItemView",
+            "filterViewType": "prRatingsFilterView",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView",
+            "entryItemAggregationViewType": "prAverageStarRatingDistributionAggregationView",
+            "entryListItemAggregationViewType": "prAverageStarRatingAggregationView"
+        },
+        "fieldId": "number",
+        "question": "Transparency",
+        "clearable": true,
+        "description": "How open, honest and informative this company is in regards to its business practices.",
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "afaab6fb-5390-4ae5-aec2-d8c72033677c"
+    },
+    "eaa503b4-98ed-42c2-8c91-aa02a4a713e9": {
+        "tags": [
+            "group_by_widget_type"
+        ],
+        "type": "number",
+        "title": "Customer Service",
+        "widget": {
+            "queryType": "ratings",
+            "formViewType": "prStarRatingWidget",
+            "itemViewType": "prRatingItemView",
+            "filterViewType": "prRatingsFilterView",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView",
+            "entryItemAggregationViewType": "prAverageStarRatingDistributionAggregationView",
+            "entryListItemAggregationViewType": "prAverageStarRatingAggregationView"
+        },
+        "fieldId": "number",
+        "question": "Customer Service",
+        "clearable": true,
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "eaa503b4-98ed-42c2-8c91-aa02a4a713e9"
+    },
+    "61b46d3b-efdc-408d-90be-66eb47a4426e": {
+        "type": "number",
+        "title": "Application Process",
+        "widget": {
+            "queryType": "ratings",
+            "formViewType": "prStarRatingWidget",
+            "itemViewType": "prRatingItemView",
+            "filterViewType": "prRatingsFilterView",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView",
+            "entryItemAggregationViewType": "prAverageStarRatingDistributionAggregationView",
+            "entryListItemAggregationViewType": "prAverageStarRatingAggregationView"
+        },
+        "fieldId": "number",
+        "question": "Application Process",
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "61b46d3b-efdc-408d-90be-66eb47a4426e"
+    },
+    "822dfc95-ab26-4903-9f1e-cc71bdcf91ec": {
+        "type": "number",
+        "title": "Loan Term",
+        "widget": {
+            "options": {
+                "suffix": " years"
+            },
+            "formViewType": "prNumberWidget",
+            "itemViewType": "prHiddenItemView",
+            "filterViewType": "prHiddenFilter",
+            "formTreeViewType": "prNumberWidget",
+            "listItemViewType": "prDefaultNumberListItemView",
+            "entryItemAggregationViewType": "prAverageNumberAggregationView",
+            "entryListItemAggregationViewType": "prAverageNumberAggregationView"
+        },
+        "fieldId": "number",
+        "question": "What is the length of your loan?",
+        "validationRules": [
+            {
+                "type": "number",
+                "options": {
+                    "value": "0.5",
+                    "condition": "multipleOf"
+                }
+            },
+            {
+                "type": "number",
+                "options": {
+                    "error": "Loan Term must be less than 100 years, sorry!",
+                    "value": "100",
+                    "condition": "lte"
+                }
+            }
+        ],
+        "visibilityGroup": [
+            "guest"
+        ],
+        "path": "822dfc95-ab26-4903-9f1e-cc71bdcf91ec"
+    }
+}

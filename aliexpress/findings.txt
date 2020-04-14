@@ -1,0 +1,10 @@
+
+AliExpress feeback url
+https://feedback.aliexpress.com/display/productEvaluation.htm?v=2&productId=32970122508&ownerMemberId=232083893&companyId=241351596&memberType=seller&startValidDate=&i18n=true
+
+ownerMemberId is the same as sellerAdminSeq
+
+stars can be found within the width of the star-view div 
+
+// feedback api!!!!
+m.aliexpress.com/api/products/{productId}/feedbacks?page=1&filter=all&country=AU
