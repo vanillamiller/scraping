@@ -12,7 +12,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "exceljs": "^3.8.2",
-    "follow-redirects": "^1.11.0",
+    "follow-redirects": "^1.14.8",
     "node-fetch": "^2.6.0",
     "puppeteer": "^2.1.1",
     "request": "^2.88.2",
